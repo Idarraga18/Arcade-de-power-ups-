@@ -1,20 +1,19 @@
 using UnityEngine;
 using Unity.Hierarchy;
+
 public class PlayerStats : MonoBehaviour
 {
-   public float vidaMaxima = 100f;
+    public float vidaMaxima = 100f;
     public float vidaActual;
-    public float velocudadBase = 5f;
-    public float velocidadActual;
-    public float chalecoActivo;
-
+    public float VelocidadBase = 5f;
+    public float VelocidadActual;
+    public bool chalecoActivo;
     void Start()
     {
         vidaActual = vidaMaxima;
-        velocidadActual = velocudadBase;
+        VelocidadActual = VelocidadBase;
         chalecoActivo = false;
-    } 
-
+    }
     public void Vida(float cantidad)
     {
         vidaActual += cantidad;
@@ -22,20 +21,18 @@ public class PlayerStats : MonoBehaviour
         {
             vidaActual = vidaMaxima;
         }
-    }   
-
+    }
     public void MultiplicarVelocidad(float multiplicado)
     {
-        velocidadActual = velocudadBase * multiplicado; 
-        
+        VelocidadActual = VelocidadBase * multiplicado;
     }
     public void ColocarEscudo(float multiplicado)
     {
         chalecoActivo = true;
     }
-
+    // Update is called once per frame
     void Update()
     {
-      
+
     }
 }

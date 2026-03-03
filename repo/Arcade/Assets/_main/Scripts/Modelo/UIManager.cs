@@ -6,79 +6,85 @@ using UnityEditorInternal;
 
 public class UIManager : MonoBehaviour
 {
-    public enum PowerUPType
+    public enum PowerUpType
     {
         Heal,
         SpeedBoost,
         Shield,
         DamageBoost
-
     }
-    private PowerUPType seletedPowerUPType;
+    private PowerUpType selectedPowerUp;// Esta variable guarda qué power-up está elegido actualmente.
 
-    [SerializeField]
-    private TMP_Text messageText;
+    [SerializeField] private TMP_Text messageText;
 
-    [SerializeField]
-    private TMP_InputField inputField;
+    [SerializeField] private TMP_InputField inputField;
 
-    private PlayerStats playerStats;
+    [SerializeField] private PlayerStats playerStats;
+
+
 
     public void SeleccionVida()
     {
-        SeleccionPowerUp(PowerUPType.Heal);
+        SeleccionPowerUp(PowerUpType.Heal);
     }
-
     public void SeleccionVelocidad()
     {
-        SeleccionPowerUp(PowerUPType.SpeedBoost);
+        SeleccionPowerUp(PowerUpType.SpeedBoost);
     }
-
     public void SeleccionEscudo()
     {
-        SeleccionPowerUp(PowerUPType.Shield);
+        SeleccionPowerUp(PowerUpType.Shield);
     }
-
     public void SeleccionDaño()
     {
-        SeleccionPowerUp(PowerUPType.DamageBoost);
+        SeleccionPowerUp(PowerUpType.DamageBoost);
     }
-
-    private void SeleccionPowerUp(PowerUPType type)
+    private void SeleccionPowerUp(PowerUpType type) // Aqui solo guarda el enum, solo se actualiza texto
     {
-        seletedPowerUPType = type;
-        messageText.text = "Seleccionado: " + type.ToString();
-
+        selectedPowerUp = type;
+        messageText.text = "Seleccionado" + type.ToString();
     }
-
     private bool ValidarReferencias()
-
     {
         if (playerStats == null)
         {
-            messageText.text = "Error: playerStats no asignado.";
+            messageText.text = "Error: PlayerStatsno asignado";
+            return false;
+        }
+        if (inputField == null)
+        {
+            messageText.text = "Error: Input no asginado";
             return false;
 
         }
-        if ( inputField == null)
+        if (messageText == null)
         {
-            messageText.text = "Error: Input no asignado";
+            Debug.Log("Mensaje de texto no asignado en el inspector");
             return false;
+
         }
         return true;
-    }
 
+    }
     public void AplicarPowerUpSeleccionado()
     {
+        print("0");
         if (!ValidarReferencias()) return;
+        print("1");
         if (!TryReadValue(out float value)) return;
-    }
+        print("2");
+        if (!ValidacionDeReglas(value)) return;
+        print("3");
+        AplicarPowerUp(value);
 
+        print("4");
+
+    }
     private bool TryReadValue(out float value)
     {
         value = 0f;
 
-        if( string.IsNullOrWhiteSpace(inputField.text))
+        if (string.IsNullOrWhiteSpace(inputField.text))
         {
             messageText.text = "Ingrese un valor.";
             return false;
@@ -86,9 +92,75 @@ public class UIManager : MonoBehaviour
 
         if (!float.TryParse(inputField.text, out value))
         {
-            messageText.text = "Valor no válido. Ingrese un número.";
+            messageText.text = "Ingrese un número válido.";
             return false;
         }
+
         return true;
+    }
+
+    private bool ValidacionDeReglas(float valor)
+    {
+        if (valor < 0f)
+        {
+            messageText.text = "El valor debe ser mayor que 0.";
+            return false;
+        }
+
+        switch (selectedPowerUp)
+        {
+            case PowerUpType.Heal:
+                if (playerStats.vidaActual >= playerStats.vidaMaxima)
+                {
+                    messageText.text = "La vida ya esta al maximo";
+                    return false;
+                }
+                break;
+            case PowerUpType.SpeedBoost:
+                if (valor > 5f)
+                {
+                    messageText.text = "Multiplicador demasiado alto";
+                    return false;
+                }
+                break;
+            case PowerUpType.Shield:
+                if (playerStats.chalecoActivo) 
+                {
+                    messageText.text = "EL ESCUDO YA ESTA ACTIVO";
+                    return false;
+                }
+                break;
+            case PowerUpType.DamageBoost:
+                break;
+
+        }
+        return true;
+    }
+    private void AplicarPowerUp(float value)
+    {
+        switch (selectedPowerUp)
+        {
+            case PowerUpType.Heal:
+                playerStats.Vida(value);
+                messageText.text = "vida actual: " + playerStats.vidaActual;
+                break;
+            case PowerUpType.SpeedBoost:
+                playerStats.MultiplicarVelocidad(value);
+                messageText.text = "velocidad actual: " + playerStats.VelocidadActual;
+                break;
+            case PowerUpType.Shield:
+                playerStats.ColocarEscudo(value);
+                messageText.text = " ESCUDO ACTIVADO ";
+                break;
+            case PowerUpType.DamageBoost:
+                messageText.text = "Daño aumentado en: " + value;
+                break;
+        }
+
+
+
+
+
+
     }
 }

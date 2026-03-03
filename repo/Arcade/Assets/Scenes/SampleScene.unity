@@ -1604,8 +1604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4b9cd051468bc40a2ba2d76615a952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedPowerupText: {fileID: 0}
-  currentSelectedPowerUp: 0
+  messageText: {fileID: 0}
+  inputField: {fileID: 0}
+  playerStats: {fileID: 0}
 --- !u!4 &958164467
 Transform:
   m_ObjectHideFlags: 0
@@ -1992,7 +1993,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1552841888}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1552841888
 MonoBehaviour:
   m_ObjectHideFlags: 0
