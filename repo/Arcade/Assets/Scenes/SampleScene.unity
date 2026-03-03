@@ -207,6 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 123837851}
+  - component: {fileID: 123837852}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -230,6 +231,23 @@ Transform:
   - {fileID: 655715783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &123837852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123837850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df64fef2d5e8ce4d970defc3d013254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 100
+  vidaActual: 80
+  VelocidadBase: 5
+  VelocidadActual: 0
+  chalecoActivo: 0
 --- !u!1 &171096433
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 542, y: -118}
+  m_AnchoredPosition: {x: 464, y: 183}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &193489998
@@ -1487,7 +1505,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 819204743}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 958164466}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SeleccionVelocidad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &819204743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1604,9 +1634,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4b9cd051468bc40a2ba2d76615a952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageText: {fileID: 0}
-  inputField: {fileID: 0}
-  playerStats: {fileID: 0}
+  messageText: {fileID: 193489998}
+  inputField: {fileID: 1745134427}
+  playerStats: {fileID: 123837852}
 --- !u!4 &958164467
 Transform:
   m_ObjectHideFlags: 0
@@ -1872,7 +1902,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1330352561}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 958164466}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SeleccionEscudo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1330352561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1994,13 +2036,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 958164466}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SeleccionVida
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2126,7 +2168,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1721001247}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 958164466}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: "SeleccionDa\xF1o"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1721001247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2425,7 +2479,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1822215158}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 958164466}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: AplicarPowerUpSeleccionado
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1822215158
 MonoBehaviour:
   m_ObjectHideFlags: 0
