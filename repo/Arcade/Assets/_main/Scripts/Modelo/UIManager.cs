@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TMP_InputField inputField;
 
-    private playerStats;
+    private PlayerStats playerStats;
 
     public void SeleccionVida()
     {
@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
 
     private void SeleccionPowerUp(PowerUPType type)
     {
-        seletedPowerUPType = powerUPType;
+        seletedPowerUPType = type;
         messageText.text = "Seleccionado: " + type.ToString();
 
     }
