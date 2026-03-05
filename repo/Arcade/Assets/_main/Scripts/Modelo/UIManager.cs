@@ -1,13 +1,11 @@
 using UnityEngine;
 using TMPro;
-using UnityEditorInternal;
-
-
 
 public class UIManager : MonoBehaviour
 {
     public enum PowerUpType
     {
+
         Heal,
         SpeedBoost,
         Shield,
@@ -23,6 +21,7 @@ public class UIManager : MonoBehaviour
 
 
 
+    
     public void SeleccionVida()
     {
         SeleccionPowerUp(PowerUpType.Heal);
@@ -39,7 +38,7 @@ public class UIManager : MonoBehaviour
     {
         SeleccionPowerUp(PowerUpType.DamageBoost);
     }
-    private void SeleccionPowerUp(PowerUpType type) // Aqui solo guarda el enum, solo se actualiza texto
+    private void SeleccionPowerUp(PowerUpType type) 
     {
         selectedPowerUp = type;
         messageText.text = "Seleccionado" + type.ToString();
@@ -131,6 +130,8 @@ public class UIManager : MonoBehaviour
                 }
                 break;
             case PowerUpType.DamageBoost:
+                playerStats.CausarDaño(valor);
+                messageText.text = "Vida restante: " + playerStats.vidaActual;
                 break;
 
         }
@@ -146,7 +147,7 @@ public class UIManager : MonoBehaviour
                 break;
             case PowerUpType.SpeedBoost:
                 playerStats.MultiplicarVelocidad(value);
-                messageText.text = "velocidad actual: " + playerStats.VelocidadActual;
+                messageText.text = "velocidad actual: " + playerStats.velocidadActual;
                 break;
             case PowerUpType.Shield:
                 playerStats.ColocarEscudo(value);
